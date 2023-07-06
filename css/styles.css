@@ -15,6 +15,10 @@
     background: #222222;
 }
 
+.controls{
+    padding: 13px;
+}
+
 /* This styles the navbar and its contents */
 #navbar {
     height: 60px;
