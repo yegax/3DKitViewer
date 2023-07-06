@@ -12,6 +12,8 @@
         <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
         <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 
+
+
     </head>
     <body>
 
@@ -34,29 +36,74 @@
     <!-- This is for holding the 3D object -->
     <div id="aSide">
         <!-- 3D objsect -->
-        <!-- This inserts the 3D object inside the aside container -->
-        <model-viewer src="assets/HTC_Vive_Headset.gltf" alt="VR Headset" auto-rotate camera-controls ar ios-src="assets/HTC_Vive_Headset.gltf"></model-viewer>
+        <!-- This inserts the 3D object inside the aside container
+
+        <model-viewer src="assets/scene.gltf" alt="VR Headset" auto-rotate camera-controls ar ios-src="assets/scene.gltf"></model-viewer> -->
+
+        <model-viewer id="color" camera-controls touch-action="pan-y" interaction-prompt="none" src="assets/jersey_tigres.glb" alt="kit">
+            <div class="controls" id="color-controls">
+              <button>Original</button>
+              <button data-color="#ff0000">Red</button>
+              <button data-color="#00ff00">Green</button>
+              <button data-color="#0000ff">Blue</button>
+            </div>
+
+
+            <div class="controls">
+                <p>Texture</p>
+                <select id="diffuse">
+                    <option>None</option>
+                    <option value="assets/textures/FABRIC_2_Copy_1_FRONT_298718.001_baseColor.png">Home</option>
+                    <option value="assets/textures/FABRIC_3_Copy_1_FRONT_298718.001_baseColor.png">Away</option>
+                </select>
+            </div>
+        </model-viewer>
+
     </div>
 
     <!-- Content container -->
     <!-- This is for holding some brief description about the 3D object -->
     <div id="content">
-        <h2>3D VR LIVE</h2>
-        <p>The modern headsets, boost your pleasure to the MAX!</p>
+        <h2>3D KIT VIEWER</h2>
+        <p>Online Web 3D Kit vizualizer!</p>
         <button>Shop</button>
     </div>
 
-    <!-- Social media icons -->
-    <!-- This is for holding some company's social media icons and related links -->
-    <div id="icons">
-        <div id="iconsLogo">
-            <i class="fab fa-facebook-f"></i>
-            <i class="fab fa-instagram"></i>
-            <i class="fab fa-youtube"></i>
-            <i class="fab fa-twitter"></i>
-        </div>
-    </div>
 </div>
 
     </body>
+
+    <script>
+        const modelViewerColor = document.querySelector("model-viewer#color");
+        
+        document.querySelector('#color-controls').addEventListener('click', (event) => {
+          const colorString = event.target.dataset.color;
+          const [material] = modelViewerColor.model.materials;
+          material.pbrMetallicRoughness.setBaseColorFactor(colorString);
+        });
+    </script>
+
+<script type="module">
+    const modelViewerTexture1 = document.querySelector("model-viewer#color");
+    
+    modelViewerTexture1.addEventListener("load", () => {
+    
+      const material = modelViewerTexture1.model.materials[0];
+    
+      const createAndApplyTexture = async (channel, event) => {
+        const texture = await modelViewerTexture1.createTexture(event.target.value);
+        if (channel.includes('base') || channel.includes('metallic')) {
+          material.pbrMetallicRoughness[channel].setTexture(texture);
+        } else {
+          material[channel].setTexture(texture);
+        }
+      }
+    
+      document.querySelector('#diffuse').addEventListener('input', (event) => {
+        createAndApplyTexture('baseColorTexture', event);
+      });
+
+    });
+    
+    </script>
 </html>
