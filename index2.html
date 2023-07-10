@@ -22,7 +22,7 @@
 
 
     </head>
-    <body>
+    <body> 
 
         <!-- Main Container -->
 <div id="container">
@@ -48,26 +48,32 @@
         <model-viewer src="assets/scene.gltf" alt="VR Headset" auto-rotate camera-controls ar ios-src="assets/scene.gltf"></model-viewer> -->
 
 
-        
-        <model-viewer 
+       
+        <model-viewer  
         id="modelA"
-        camera-controls touch-action="pan-y" 
-        interaction-prompt="none" 
+        style="z-index: 30;"
+        camera-controls 
+        touch-action="pan-y" 
+
         disable-zoom 
         src="assets/arms.glb"
-        alt="kit">
+        alt="kit">                 <button id="button">Blur</button>
         </model-viewer>
-
+        <img class="viewerback" id="blah" src="#" alt="your image" />
     </div>
 
     <!-- Content container -->
     <!-- This is for holding some brief description about the 3D object -->
     <div id="content">
         <h2>3D KIT VIEWER</h2>
+
         <p>Online Web 3D Kit vizualizer!</p>
         <input type="file" id="urlA">
-
+        <input type="file" onchange="readURL(this);" id="blah">
     </div>
+
+
+
 
 </div>
 
@@ -82,6 +88,19 @@
     src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"
   ></script>
 
+  <script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+      
+          reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+          };
+      
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      </script>
 
   <script type="module">
 document.getElementById("urlA").addEventListener("change", function() {
@@ -97,5 +116,21 @@ document.getElementById("urlA").addEventListener("change", function() {
   });
   reader.readAsDataURL(file);
 })
+    </script>
+    
+    <script>
+      $("#button").click(function(){
+    $("img").toggleClass("blurimg");
+});
+    </script>
+
+    <script>
+jQuery(document).ready(function(){
+  jQuery(function() {
+        jQuery(this).bind("contextmenu", function(event) {
+            event.preventDefault();
+        });
+    });
+});
     </script>
 </html>
