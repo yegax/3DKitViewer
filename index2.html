@@ -1,98 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>3D Object</title>
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
-</head>
-<body>
-    <div id="container">
-        <div id="navbar">
-            <ul>
-                <li class="active">
-                    <a href="#">Home</a>
-                </li>
-                <li><a href="#">Tech</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Help</a></li>
-            </ul>
-        </div>
-        <div id="aSide">
-            <model-viewer id="color" camera-controls touch-action="pan-y" interaction-prompt="none" src="assets/kit.glb" alt="kit">
-                <div class="controls" id="color-controls">
-                    <button>Original</button>
-                    <button data-color="#ff0000">Red</button>
-                    <button data-color="#00ff00">Green</button>
-                    <button data-color="#0000ff">Blue</button>
-                </div>
-                <div class="controls">
-                    <p>Texture</p>
-                    <select id="diffuse">
-                        <option value="">1</option>
-                        <option value="assets/textures/1.jpg">2</option>
-                        <option value="assets/textures/2.jpg">3</option>
-                        <option value="assets/textures/3.jpg">4</option>
-                        <option value="custom">Custom</option>
-                    </select>
-                    <input style="display: none;" type="file" id="customTextureInput" accept="image/*">
-                </div>
-            </model-viewer>
-        </div>
-        <div id="content">
-            <h2>3D KIT VIEWER</h2>
-            <p>Online Web 3D Kit vizualizer!</p>
-            <button id="uploadBtn">Upload</button>
-            <input style="display: none;" type="file" id="uploadInput" accept="image/*">
-        </div>
+    <head>
+
+        <meta charset="UTF-8">
+        <title>3D Object</title>
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="stylesheet" href="css/styles.css">
+
+
+        <link
+        class="jsbin"
+        href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css"
+        rel="stylesheet"
+        type="text/css"
+      />
+        <!--Imports a model-viewer JavaScript code -->
+        <!--It helps to handle how the 3D Object would be displayed -->
+        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+        <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+
+
+
+    </head>
+    <body>
+
+        <!-- Main Container -->
+<div id="container">
+    <!-- Navbar container -->
+    <div id="navbar">
+
+        <ul>
+            <li class="active">
+                <a href="#">Home</a>
+            </li>
+            <li><a href="#">Tech</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Help</a></li>
+        </ul>
     </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
-    <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    const texture = URL.createObjectURL(input.files[0]);
-                    applyCustomTexture(texture);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
+    <!-- An aside -->
+    <!-- This is for holding the 3D object -->
+    <div id="aSide">
+        <!-- 3D objsect -->
+        <!-- This inserts the 3D object inside the aside container
 
-        function applyCustomTexture(textureUrl) {
-            const modelViewer = document.querySelector("model-viewer#color");
-            const material = modelViewer.model.materials[0];
-            const texture = new THREE.TextureLoader().load(textureUrl);
-            material.pbrMetallicRoughness.baseColorTexture = texture;
-            material.pbrMetallicRoughness.baseColorTexture.encoding = THREE.sRGBEncoding;
-            material.needsUpdate = true;
-        }
+        <model-viewer src="assets/scene.gltf" alt="VR Headset" auto-rotate camera-controls ar ios-src="assets/scene.gltf"></model-viewer> -->
 
-        document.getElementById("uploadBtn").addEventListener("click", function () {
-            document.getElementById("uploadInput").click();
-        });
 
-        document.getElementById("uploadInput").addEventListener("change", function () {
-            readURL(this);
-        });
+        
+        <model-viewer 
+        id="modelA"
+        camera-controls touch-action="pan-y" 
+        interaction-prompt="none" 
+        disable-zoom 
+        src="assets/arms.glb"
+        alt="kit">
+        </model-viewer>
 
-        document.getElementById("diffuse").addEventListener("change", function () {
-            const selectedOption = this.value;
-            if (selectedOption === "custom") {
-                document.getElementById("customTextureInput").click();
-            } else {
-                applyCustomTexture("");
-            }
-        });
+    </div>
 
-        document.getElementById("customTextureInput").addEventListener("change", function () {
-            readURL(this);
-        });
+    <!-- Content container -->
+    <!-- This is for holding some brief description about the 3D object -->
+    <div id="content">
+        <h2>3D KIT VIEWER</h2>
+        <p>Online Web 3D Kit vizualizer!</p>
+        <input type="file" id="urlA">
+
+    </div>
+
+</div>
+
+    </body>
+
+    <script
+    class="jsbin"
+    src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
+  ></script>
+  <script
+    class="jsbin"
+    src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"
+  ></script>
+
+
+  <script type="module">
+document.getElementById("urlA").addEventListener("change", function() {
+  const file = this.files[0];
+  const viewer = document.getElementById("modelA");
+
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.addEventListener('load', async function() {
+    const texture = await viewer.createTexture(reader.result);
+    viewer.model.materials[0].pbrMetallicRoughness.baseColorTexture.setTexture(texture);
+  });
+  reader.readAsDataURL(file);
+})
     </script>
-</body>
 </html>
