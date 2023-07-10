@@ -22,7 +22,7 @@
 
 
     </head>
-    <body> 
+    <body oncontextmenu="return false;"> 
 
         <!-- Main Container -->
 <div id="container">
@@ -54,7 +54,9 @@
         style="z-index: 30;"
         camera-controls 
         touch-action="pan-y" 
-
+        disable-pan 
+        oncontextmenu="return false;"
+        interaction-prompt="none" 
         disable-zoom 
         src="assets/arms.glb"
         alt="kit">                 <button id="button">Blur</button>
@@ -124,13 +126,4 @@ document.getElementById("urlA").addEventListener("change", function() {
 });
     </script>
 
-    <script>
-jQuery(document).ready(function(){
-  jQuery(function() {
-        jQuery(this).bind("contextmenu", function(event) {
-            event.preventDefault();
-        });
-    });
-});
-    </script>
 </html>
