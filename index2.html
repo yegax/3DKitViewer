@@ -47,6 +47,9 @@
         src="assets/arms.glb"
         alt="kit">                 
         
+        <img class="logo-viewer" src="https://i.postimg.cc/pTPFcGnH/yegax.png"/> 
+        
+        <div style="padding: 10px;">
         <button onclick="moveCameraView('front')"> 
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
@@ -67,7 +70,8 @@
             <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
           </svg>
         </button>
- 
+      </div>
+
 
         <button id="button" class="bloque">Blur</button>
         <button id="buttonB" class="bloque">Contrast</button>
@@ -80,17 +84,28 @@
     <!-- Content container -->
     <!-- This is for holding some brief description about the 3D object -->
     <div id="content">
+      
         <h2>3D KIT VIEWER</h2>
 
-        <p>Online Web 3D Kit vizualizer!</p>
+        <div  class="bouncing-text">
+          <p class="b">v</p>
+          <p class="o">.</p>
+          <p class="u">1</p>
+          <p class="n">.</p>
+          <p class="c">0</p>
+          <p class="e">.</p>
+          <p class="d">0</p>
+      </div>
 
+        <p>Online Web 3D Kit vizualizer!</p>
+        <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" style="overflow:visible;" data-slug="yegax" data-color="#FFDD00" data-emoji=""  data-font="Bree" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+        
       
         <div class="gridcontent">
 
           <input type="file" id="urlA">
           <label for="urlA">Kit Texture</label>   
           
-
           <input type="file" onchange="readURL(this);" id="blah">
           <label for="urlA">Background</label>   
 
@@ -99,6 +114,16 @@
 
           <input type="file" id="urlC">
           <label for="urlA">Name</label>   
+
+          <div  id="color-controls">
+            <label for="color-controls">Boots</label>  
+
+            <button style="background-color: white;"></button>
+            <button style="background-color: rgb(255, 0, 0);" data-color="#ff0000"></button>
+            <button style="background-color: rgb(195, 255, 0);" data-color="#00ff00"></button>
+            <button style="background-color: rgb(43, 0, 255);" data-color="#0000ff"></button>
+
+
         </div>
 
 
@@ -118,6 +143,16 @@
     class="jsbin"
     src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"
   ></script>
+
+  <script>
+const modelViewerColor = document.querySelector("model-viewer#modelA");
+
+document.querySelector('#color-controls').addEventListener('click', (event) => {
+  const colorString = event.target.dataset.color;
+  const material = modelViewerColor.model.materials[4];
+  material.pbrMetallicRoughness.setBaseColorFactor(colorString);
+});
+</script>
 
   <script>
     function readURL(input) {
@@ -185,15 +220,15 @@ document.getElementById("urlA").addEventListener("change", function() {
     
     <script>
     $("#button").click(function(){
-      $("img").removeClass("contimg");
-      $("img").toggleClass("blurimg");
+      $('#blah').removeClass("contimg");
+      $('#blah').toggleClass("blurimg");
     });
     </script>
 
     <script>
       $("#buttonB").click(function(){
-        $("img").removeClass("blurimg");
-      $("img").toggleClass("contimg");
+        $('#blah').removeClass("blurimg");
+      $('#blah').toggleClass("contimg");
     });
     </script>
 
@@ -220,4 +255,7 @@ document.getElementById("urlA").addEventListener("change", function() {
       }
   }
 </script>
+
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="yegax" data-description="Support me on Buy me a coffee!" data-message=""  data-color="#FFDD00" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+  
 </html>
