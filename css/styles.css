@@ -6,7 +6,10 @@
     font-family: sans-serif;
     box-sizing: border-box;
     color: rgb(26, 26, 26);
-    background-color: rgb(36, 36, 36);
+}
+
+body{
+    background-color: rgb(21, 21, 21);
 }
 
 /*  This is for styling the main container that holds everything */
@@ -74,22 +77,28 @@ img {
 
 /* This sets the hover action of the navbar links */
 #navbar ul:hover .active {
-
     border: none;
 }
 
 /* This styles the descriptions of the 3D object */
 #content {
-    height: 500px;
+    height: 700px;
     width: 700px;
     position: absolute;
     left: 12%;
-    top: calc(50% - 250px);
+    top: 100px;
+    
 }
 
 /* This styles the heading in the 3D description */
 #content h2 {
-    font-size: 140px;
+    font-size: 40px;
+    color: rgb(209, 209, 209);
+}
+
+/* This styles the heading in the 3D description */
+#content h3 {
+    font-size: 10px;
     color: rgb(209, 209, 209);
 }
 
@@ -100,40 +109,74 @@ img {
 }
 
 /* This styles the button in the 3D description*/
-#content button {
-    width: 35%;
+button {
+    min-width: 50px;
+    max-width: 50px;
     height: 40px;
     font-size: 16px;
     font-family: sans-serif;
-    padding-top: 2px;
-    margin-top: 5vh;
-    margin-left: center;
-    border: none;
+    margin-left: 15px;
     outline: none;
     border-radius: 20px;
-    background: rgb(255, 229, 30);
+    background: rgba(255, 225, 0, 0.6);
     color: rgb(0, 0, 0);
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: none;
 }
+
+.bloque{
+    display: block;
+    min-width: 150px;
+    max-width: 150px;
+    height: 40px;
+    font-size: 16px;
+    font-family: sans-serif;
+    margin-left: 15px;
+    outline: none;
+    border-radius: 20px;
+    background: rgba(255, 225, 0, 0.6);
+    color: rgb(0, 0, 0);
+    padding: 10px 25px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+.gridcontent{
+    display: grid;
+    margin-top: 25px;
+}
+
+::file-selector-button {
+    display: none;
+  }
+  ::-webkit-file-upload-button {
+    display: none;
+ }
+ 
 
 /* This styles the button in the 3D description*/
 #content input {
-    width: 35%;
+    min-width: 300px;
+    max-width: 300px;
     height: 40px;
     font-size: 16px;
     font-family: sans-serif;
-    padding-top: 2px;
-    margin-top: 5vh;
-    margin-left: center;
     border: none;
     outline: none;
     border-radius: 20px;
-    background: rgb(255, 229, 30);
+    background: rgba(255, 225, 0, 0.761);
     color: rgb(0, 0, 0);
+
+    padding: 10px 25px;
+    cursor: pointer;
 }
 
 /* This adds some hover effects over the button */
 #content button:hover {
-    background: rgb(197, 147, 0);
+    background: rgb(113, 0, 206);
 }
 
 /* This styles the social media icons*/
@@ -167,12 +210,12 @@ img {
     display: grid;
     place-items: center;
     cursor: pointer;
+
 }
 
 /* This styles the aside container */
 #aSide {
-    border-color: rgba(255, 255, 255, 0);
-    border-style: double;
+    border: none;
     height: 1100px;
     width: 900px;
     position: absolute;
@@ -194,15 +237,15 @@ img {
 .viewerback {
     z-index: 20;
     position: fixed;
-    padding: 0px;
-    max-width: 1100px;
-    min-width: 1100px;
+    max-width: 1000px;
+    min-width: 1000px;
     max-height: 1000px;
     min-height: 1000px;
-    min-width: none;
     background-repeat: no-repeat;
     background-position: top;
     object-fit: cover;
+    border: none;
+    border-color: rgba(255, 225, 0, 0);
 }
 
 .blurimg {
@@ -210,3 +253,18 @@ img {
   filter: blur(3px);
   -webkit-filter: blur(3px);
 }
+
+.contimg {
+    filter: contrast(200%);
+    -webkit-filter: contrast(200%);
+  }
+
+
+label{
+    color: rgba(224, 224, 224, 0.7);
+    margin-bottom: 20px;
+    font-weight: lighter;
+    margin-top: 5px;
+    margin-left: 16px;
+}
+

@@ -6,8 +6,8 @@
         <title>3D Object</title>
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <link rel="stylesheet" href="css/styles.css">
-
-
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <link
         class="jsbin"
         href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css"
@@ -26,19 +26,7 @@
 
         <!-- Main Container -->
 <div id="container">
-    <!-- Navbar container -->
-    <div id="navbar">
 
-        <ul>
-            <li class="active">
-                <a href="#">Home</a>
-            </li>
-            <li><a href="#">Tech</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Help</a></li>
-        </ul>
-    </div>
     <!-- An aside -->
     <!-- This is for holding the 3D object -->
     <div id="aSide">
@@ -46,9 +34,6 @@
         <!-- This inserts the 3D object inside the aside container
 
         <model-viewer src="assets/scene.gltf" alt="VR Headset" auto-rotate camera-controls ar ios-src="assets/scene.gltf"></model-viewer> -->
-
-
-       
         <model-viewer  
         id="modelA"
         style="z-index: 30;"
@@ -58,12 +43,38 @@
         oncontextmenu="return false;"
         interaction-prompt="none" 
         disable-zoom 
+        exposure="1.4"
         src="assets/arms.glb"
         alt="kit">                 
-        <button id="button">Blur</button>
         
+        <button onclick="moveCameraView('front')"> 
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+          </svg>
+        </button>
+        <button onclick="moveCameraView('back')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+            <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+          </svg>
+        </button>
+        <button onclick="moveCameraView('left')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+            <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+          </svg>
+        </button>
+        <button onclick="moveCameraView('right')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+            <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+          </svg>
+        </button>
+ 
+
+        <button id="button" class="bloque">Blur</button>
+        <button id="buttonB" class="bloque">Contrast</button>
+
         </model-viewer>
-        <img class="viewerback" id="blah" src="#" alt="your image" />
+
+        <img class="viewerback" id="blah"/>
     </div>
 
     <!-- Content container -->
@@ -72,13 +83,28 @@
         <h2>3D KIT VIEWER</h2>
 
         <p>Online Web 3D Kit vizualizer!</p>
-        <input type="file" id="urlA">
-        <input type="file" onchange="readURL(this);" id="blah">
+
+      
+        <div class="gridcontent">
+
+          <input type="file" id="urlA">
+          <label for="urlA">Kit Texture</label>   
+          
+
+          <input type="file" onchange="readURL(this);" id="blah">
+          <label for="urlA">Background</label>   
+
+          <input type="file" id="urlB">
+          <label for="urlA">Number</label>   
+
+          <input type="file" id="urlC">
+          <label for="urlA">Name</label>   
+        </div>
+
+
     </div>
 
-
-
-
+<i class="bi bi-box-arrow-down-right"></i>
 </div>
 
     </body>
@@ -122,11 +148,76 @@ document.getElementById("urlA").addEventListener("change", function() {
   reader.readAsDataURL(file);
 })
     </script>
+
+
+
+<script type="module">
+  document.getElementById("urlB").addEventListener("change", function() {
+    const file = this.files[0];
+    const viewer = document.getElementById("modelA");
+  
+    if (!file) return;
+  
+    const reader = new FileReader();
+    reader.addEventListener('load', async function() {
+      const texture = await viewer.createTexture(reader.result);
+      viewer.model.materials[6].pbrMetallicRoughness.baseColorTexture.setTexture(texture);
+    });
+    reader.readAsDataURL(file);
+  })
+      </script>
+
+<script type="module">
+  document.getElementById("urlC").addEventListener("change", function() {
+    const file = this.files[0];
+    const viewer = document.getElementById("modelA");
+  
+    if (!file) return;
+  
+    const reader = new FileReader();
+    reader.addEventListener('load', async function() {
+      const texture = await viewer.createTexture(reader.result);
+      viewer.model.materials[8].pbrMetallicRoughness.baseColorTexture.setTexture(texture);
+    });
+    reader.readAsDataURL(file);
+  })
+      </script>
     
     <script>
-      $("#button").click(function(){
-    $("img").toggleClass("blurimg");
-});
+    $("#button").click(function(){
+      $("img").removeClass("contimg");
+      $("img").toggleClass("blurimg");
+    });
     </script>
 
+    <script>
+      $("#buttonB").click(function(){
+        $("img").removeClass("blurimg");
+      $("img").toggleClass("contimg");
+    });
+    </script>
+
+<script>
+  function moveCameraView(perspective) {
+      const modelA = document.getElementById("modelA");
+
+      switch (perspective) {
+          case 'left':
+              modelA.cameraOrbit = '-90deg 75deg 4m';
+              break;
+          case 'right':
+              modelA.cameraOrbit = '90deg 75deg 4m';
+              break;
+          case 'top':
+              modelA.cameraOrbit = '90deg 0deg 4m';
+              break;
+          case 'front':
+              modelA.cameraOrbit = '0deg 75deg 4m';
+              break;
+          case 'back':
+              modelA.cameraOrbit = '180deg 75deg 4m';
+              break;
+      }
+  }
+</script>
 </html>
