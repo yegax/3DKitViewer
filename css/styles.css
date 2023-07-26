@@ -89,6 +89,7 @@ img {
 #content h2 {
     font-size: 40px;
     color: rgb(209, 209, 209);
+    margin-right: 400px
 }
 
 /* This styles the heading in the 3D description */
@@ -105,18 +106,19 @@ img {
 
 /* This styles the button in the 3D description*/
 button {
+    opacity: 0.5;
     min-width: 40px;
     max-width: 40px;
     height: 40px;
     font-size: 16px;
     font-family: sans-serif;
-    margin-left: 1px;
     outline: none;
     border-radius: 20px;
     background: rgba(255, 225, 0, 0.7);
     color: rgb(0, 0, 0);
     padding: 10px 10px;
-    margin-bottom: 10px;
+    float: left;
+    margin-right: 8px; 
     cursor: pointer;
     border: none;
 }
@@ -126,19 +128,17 @@ button:hover {
 }
 
 .bloque{
-    display: block;
     min-width: 150px;
     max-width: 150px;
     height: 40px;
     font-size: 16px;
     font-family: sans-serif;
-    margin-left: 15px;
+    margin-left: 8px;
     outline: none;
     border-radius: 20px;
     background: rgba(255, 225, 0, 0.7);
     color: rgb(0, 0, 0);
-    padding: 10px 25px;
-    margin-bottom: 10px;
+    padding: 10px;
     cursor: pointer;
     border: none;
 }
@@ -219,7 +219,7 @@ button:hover {
 /* This styles the aside container */
 #aSide {
     border: none;
-    margin-left: 500px;
+    margin-left: 485px;
     background-color: rgba(36, 36, 36,0);
 }
 
@@ -229,23 +229,23 @@ button:hover {
     min-width: 900px;
     max-height: 900px;
     min-height: 900px;
-    left: 0;
     border: none;
     background-color: rgba(36, 36, 36,0);
 }
 
 .viewerback {
-    z-index: 1;    
-    max-width: 900px;
-    min-width: 900px;
-    max-height: 900px;
-    min-height: 900px;
+    max-width: 1000px;
+    min-width: 1000px;
+    max-height: 1000px;
+    min-height: 1000px;
     position: absolute;
     background-repeat: no-repeat;
     background-position: top;
     object-fit: cover;
+    z-index: -1;
+    margin-left: 200px;
+    margin-top: -80px;
 
-    margin-right: 100px;
 }
 
 .blurimg {
@@ -264,8 +264,7 @@ label{
     color: rgba(224, 224, 224, 0.7);
     margin-bottom: 20px;
     font-weight: lighter;
-    margin-top: 10px;
-    margin-left: 16px;
+    margin-top: 8px;
 }
 
 .bouncing-text {
@@ -331,13 +330,13 @@ label{
   .logo-viewer{
     margin-top: -10px;
     padding: 10px;
-    margin-left: 5px;
-    position:sticky;
     max-width: 220px;
     min-width: 220px;
     max-height: 85px;
     min-height: 85px;
-    opacity: 0.7;
+    opacity: 0.3;
+    margin-left: 60px;
+    float: left;
     z-index: 20;
   }
 
@@ -356,6 +355,12 @@ label{
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     margin: 0px;
     z-index: 0;
+    text-align: center;
+   /* New properties for vertical centering */
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+    
 }
 
 .ad-column {
@@ -369,5 +374,10 @@ label{
     box-shadow: 0 0 5px rgba(63, 63, 63, 0.1);
     margin: 5px;
     z-index: 0;
+
+}
+
+.viewertools{
+    margin-left: 70px;
 }
 
