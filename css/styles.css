@@ -81,7 +81,6 @@ img {
     height: 700px;
     width: 700px;
     position: absolute;
-    left: 12%;
     top: 80px;
     
 }
@@ -220,37 +219,33 @@ button:hover {
 /* This styles the aside container */
 #aSide {
     border: none;
-    max-width: 900px;
-    min-width: 900px;
-    max-height: 900px;
-    min-height: 900px;
+    margin-left: 500px;
     background-color: rgba(36, 36, 36,0);
 }
 
 /* This styles the 3D object inserted in the aside container */
 #aSide model-viewer {
-
-
-
-    top: 40px;
+    max-width: 900px;
+    min-width: 900px;
+    max-height: 900px;
+    min-height: 900px;
     left: 0;
     border: none;
     background-color: rgba(36, 36, 36,0);
 }
 
 .viewerback {
-    z-index: 20;
-    position: fixed;
-    max-width: 1000px;
-    min-width: 1000px;
-    max-height: 1000px;
-    min-height: 1000px;
-
+    z-index: 1;    
+    max-width: 900px;
+    min-width: 900px;
+    max-height: 900px;
+    min-height: 900px;
+    position: absolute;
     background-repeat: no-repeat;
     background-position: top;
     object-fit: cover;
-    border: none;
-    border-color: rgba(255, 225, 0, 0);
+
+    margin-right: 100px;
 }
 
 .blurimg {
@@ -343,7 +338,7 @@ label{
     max-height: 85px;
     min-height: 85px;
     opacity: 0.7;
-    z-index: 30;
+    z-index: 20;
   }
 
   .container {
@@ -356,36 +351,23 @@ label{
     flex: 1;
     min-width: 200px;
     padding: 20px;
-    background-color: #f2f2f2;
+    background-color: #e3e3e3;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    margin: 5px;
+    margin: 0px;
+    z-index: 0;
 }
 
 .ad-column {
-    flex: 0 0 calc(50% - 10px); /* Half the size minus the margin */
+    flex: 1 0 calc(50% - 10px); /* Half the size minus the margin */
     text-align: center;
     font-weight: bold;
     color: #666;
     padding: 10px;
-    background-color: #e3e3e3;
+    background-color: #141414;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 5px rgba(63, 63, 63, 0.1);
     margin: 5px;
+    z-index: 0;
 }
 
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .ad-column {
-        flex: 1;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .ad-column:first-child {
-        flex: 0 0 calc(25% - 10px); /* Half the size minus the margin */
-    }
-}
