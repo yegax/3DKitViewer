@@ -90,38 +90,57 @@
     <!-- This is for holding the 3D object -->
     <div id="aSide">
 
-      <div class="viewertools" style="padding: 10px;">
-        <button onclick="moveCameraView('front')"> 
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-          </svg>
-        </button>
-        <button onclick="moveCameraView('back')">
+      <img class="logo-viewer" src="https://i.postimg.cc/pTPFcGnH/yegax.png"/> 
+      
+      <div class="gamepad viewertools">
+        <button title="Front View" onclick="moveCameraView('front')">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
             <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
           </svg>
         </button>
-        <button onclick="moveCameraView('left')">
+
+        <div  class="gamepadb"> 
+        <button style="margin-right: 35px;" title="Left View" onclick="moveCameraView('left')">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
             <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
           </svg>
         </button>
-        <button onclick="moveCameraView('right')">
+
+        <button title="Right View" onclick="moveCameraView('right')">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
             <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
           </svg>
         </button>
-
-        <button id="button" class="bloque">Blur</button>
-        <button id="buttonB" class="bloque">Blur2</button>
       </div>
 
-      <!-- 3D objsect -->
+        <button class="gamepadc" title="Back View" onclick="moveCameraView('back')"> 
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="viewertoolsb">
+      <button title="Blur Background" id="button" >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-droplet-fill" viewBox="0 0 16 16">
+          <path d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6ZM6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13Z"/>
+        </svg>
+      </button>
+
+      <button title="Blur Background" id="buttonB" >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-droplet-half" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0c.109.363.234.708.371 1.038.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8zm.413 1.021A31.25 31.25 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10c0 0 2.5 1.5 5 .5s5-.5 5-.5c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
+          <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"/>
+        </svg>
+      </button>
+    </div>
+
+          <!-- 3D objsect -->
       <!-- This inserts the 3D object inside the aside container
 
       <model-viewer src="assets/scene.gltf" alt="VR Headset" auto-rotate camera-controls ar ios-src="assets/scene.gltf"></model-viewer> -->
       
-      <model-viewer  
+      <model-viewer 
       id="modelA"
       style="z-index: 30;"
       camera-controls 
@@ -130,15 +149,10 @@
       oncontextmenu="return false;"
       interaction-prompt="none" 
       disable-zoom 
-      exposure="1.4"
+      exposure="1.5"
       src="assets/arms.glb"
       alt="kit">                 
-
-      <img class="logo-viewer" src="https://i.postimg.cc/pTPFcGnH/yegax.png"/> 
       </model-viewer>
-
-
-
   </div>
         </div>
 
@@ -239,7 +253,7 @@
     
 <script>
     $("#button").click(function(){
-      $('#backimg').removeClass("contimg");
+      $('#backimg').removeClass("blurbimg");
       $('#backimg').toggleClass("blurimg");
     });
     </script>
@@ -247,7 +261,7 @@
     <script>
       $("#buttonB").click(function(){
         $('#backimg').removeClass("blurimg");
-      $('#backimg').toggleClass("contimg");
+      $('#backimg').toggleClass("blurbimg");
     });
   </script>
 
